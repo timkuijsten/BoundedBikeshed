@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Bounded Bikeshed",
+  "version": "0.0.1",
+
+  "description": "Focus on the subject instead of the bike shed.",
+
+  "content_scripts": [
+    {
+      "matches": ["*://lobste.rs/s/*", "*://tweakers.net/nieuws/*", "*://tweakers.net/reviews/*", "*://tweakers.net/plan/*", "*://news.ycombinator.com/item?id=*"],
+      "js": ["index.js"]
+    }
+  ],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "addon@bb.netsend.nl"
+    }
+  }
+}
