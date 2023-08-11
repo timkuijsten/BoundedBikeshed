@@ -14,7 +14,8 @@
 
   "icons": {
     "48": "icons/bb-48.png",
-    "96": "icons/bb-96.png"
+    "96": "icons/bb-96.png",
+    "128": "icons/bb-128.png"
   },
 
   "browser_specific_settings": {
