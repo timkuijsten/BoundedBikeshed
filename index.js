@@ -1,11 +1,9 @@
 // ==UserScript==
 // @name        BoundedBikeshed
 // @namespace   Violentmonkey Scripts
-// @match       https://lobste.rs/s/*
-// @match       https://tweakers.net/nieuws/*
-// @match       https://tweakers.net/reviews/*
-// @match       https://tweakers.net/plan/*
 // @match       https://news.ycombinator.com/item?id=*
+// @match       https://lobste.rs/s/*
+// @match       https://tweakers.net/*
 // @grant       none
 // @version     1.0
 // @author      Tim Kuijsten
