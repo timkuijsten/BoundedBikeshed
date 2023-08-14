@@ -1,3 +1,10 @@
+2023.08.14, Version 0.2.0
+
+* match all but the tweakers.net frontpage
+* remove dead code and console logs
+* make userscript available
+
+
 2023.08.13, Version 0.1.0
 
 * fix usage on tweakers.net/geek
