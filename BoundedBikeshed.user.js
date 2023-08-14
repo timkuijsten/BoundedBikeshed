@@ -102,14 +102,9 @@
       descendants += hidesubcommentsTweakers(subcomment);
     });
 
-    var el = document.createElement("twk-reactie")
-    var subel = document.createElement("div")
-
-    el.classList.add("reactie");
-    el.classList.add("collapsedmarker");
+    var el = document.createElement("a");
     el.style.cursor = 'pointer';
-    el.appendChild(subel);
-    subel.classList.add("reactieBody");
+    el.style.marginRight = '12px';
 
     var title = '';
     if (subcomments.length > 1) {
@@ -119,12 +114,12 @@
     }
     if (subcomments.length > 0) {
       title += ' (+' + (descendants - subcomments.length) + ')';
-      subel.textContent = 'Reacties';
-      subel.title = title;
+      el.textContent = 'Reacties';
+      el.title = title;
     }
 
-    // insert before first subcomment
-    comment.insertBefore(el, comment.querySelector(":scope > twk-reaction"));
+    var footer = comment.querySelector(".reactieFooter")
+    footer.insertBefore(el, footer.querySelector("a"));
 
     var subcommentcontainer = comment;
 
