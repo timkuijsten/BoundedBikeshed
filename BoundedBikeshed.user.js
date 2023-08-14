@@ -89,65 +89,66 @@
     return totaldescendants
   }
 
-  function hidesubcommentsTweakers(comments) {
-    var totaldescendants = comments.length;
-    comments.forEach(function(comment) {
-      var subcomments = comment.querySelectorAll(':scope > twk-reaction');
-      if (subcomments.length == 0) {
-        return 1;
-      }
+  function hidesubcommentsTweakers(comment) {
+    var descendants = 0;
+    var subcomments = comment.querySelectorAll(':scope > twk-reaction');
+    if (subcomments.length == 0) {
+      return descendants;
+    }
 
-      var subtotaldescendants = hidesubcommentsTweakers(subcomments)
-      totaldescendants += subtotaldescendants;
+    // recurse into all subcomments
+    subcomments.forEach(function(subcomment) {
+      descendants++;
+      descendants += hidesubcommentsTweakers(subcomment);
+    });
 
-      var el = document.createElement("twk-reactie")
-      var subel = document.createElement("div")
+    var el = document.createElement("twk-reactie")
+    var subel = document.createElement("div")
 
-      el.classList.add("reactie");
-      el.classList.add("collapsedmarker");
-      el.style.cursor = 'pointer';
-      el.appendChild(subel);
-      subel.classList.add("reactieBody");
+    el.classList.add("reactie");
+    el.classList.add("collapsedmarker");
+    el.style.cursor = 'pointer';
+    el.appendChild(subel);
+    subel.classList.add("reactieBody");
 
-      var title = '';
-      if (subcomments.length > 1) {
-        title = subcomments.length + " reacties";
-      } else if (subcomments.length == 1) {
-        title = '1 reactie';
-      }
-      if (subcomments.length > 0) {
-        title += ' (+' + (subtotaldescendants - subcomments.length) + ')';
-        subel.textContent = 'Reacties';
-        subel.title = title;
-      }
+    var title = '';
+    if (subcomments.length > 1) {
+      title = subcomments.length + " reacties";
+    } else if (subcomments.length == 1) {
+      title = '1 reactie';
+    }
+    if (subcomments.length > 0) {
+      title += ' (+' + (descendants - subcomments.length) + ')';
+      subel.textContent = 'Reacties';
+      subel.title = title;
+    }
 
-      // insert before first subcomment
-      comment.insertBefore(el, comment.querySelector(":scope > twk-reaction"));
+    // insert before first subcomment
+    comment.insertBefore(el, comment.querySelector(":scope > twk-reaction"));
 
-      var subcommentcontainer = comment;
+    var subcommentcontainer = comment;
 
-      (function togglesub(scc) {
-        var visible = false;
-        el.addEventListener('click', function() {
-          if (visible) {
-            scc.querySelectorAll(':scope > twk-reaction').forEach(function(el) {
-              el.style.display = 'none';
-            });
-          } else {
-            scc.querySelectorAll(':scope > twk-reaction').forEach(function(el) {
-              el.style.display = '';
-            });
-          }
-          visible = !visible;
-        })
-      })(subcommentcontainer);
+    (function togglesub(scc) {
+      var visible = false;
+      el.addEventListener('click', function() {
+        if (visible) {
+          scc.querySelectorAll(':scope > twk-reaction').forEach(function(el) {
+            el.style.display = 'none';
+          });
+        } else {
+          scc.querySelectorAll(':scope > twk-reaction').forEach(function(el) {
+            el.style.display = '';
+          });
+        }
+        visible = !visible;
+      })
+    })(subcommentcontainer);
 
-      subcommentcontainer.querySelectorAll(':scope > twk-reaction').forEach(function(el) {
-        el.style.display = 'none';
-      });
-    })
+    subcommentcontainer.querySelectorAll(':scope > twk-reaction').forEach(function(el) {
+      el.style.display = 'none';
+    });
 
-    return totaldescendants
+    return descendants;
   }
 
   function HNaddbutton(comment, subgroup, nrdescendants) {
@@ -245,7 +246,9 @@
   } else if (hostname == "tweakers.net") {
     allcomments = document.querySelectorAll("twk-reaction");
     if (allcomments.length > activatethresh) {
-      hidesubcommentsTweakers(document.querySelectorAll("#reactieContainer > twk-reaction"));
+      document.querySelectorAll("#reactieContainer > twk-reaction").forEach(function(comment) {
+        hidesubcommentsTweakers(comment);
+      });
     }
   } else if (hostname == "news.ycombinator.com") {
     allcomments = document.querySelectorAll("table.comment-tree tr.comtr");
