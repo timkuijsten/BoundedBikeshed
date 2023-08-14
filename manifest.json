@@ -7,7 +7,7 @@
 
   "content_scripts": [
     {
-      "matches": ["*://news.ycombinator.com/item?id=*", "*://lobste.rs/s/*", "*://tweakers.net/*"],
+      "matches": ["*://news.ycombinator.com/item?id=*", "*://lobste.rs/s/*", "*://tweakers.net/*/*"],
       "js": ["index.js"]
     }
   ],

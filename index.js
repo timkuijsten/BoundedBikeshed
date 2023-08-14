@@ -7,7 +7,7 @@
 // @supportURL  https://github.com/timkuijsten/BoundedBikeshed
 // @match       https://news.ycombinator.com/item?id=*
 // @match       https://lobste.rs/s/*
-// @match       https://tweakers.net/*
+// @match       https://tweakers.net/*/*
 // @grant       none
 // @version     0.1.0
 // ==/UserScript==
