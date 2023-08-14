@@ -8,7 +8,7 @@
   "content_scripts": [
     {
       "matches": ["*://news.ycombinator.com/item?id=*", "*://lobste.rs/s/*", "*://tweakers.net/*/*"],
-      "js": ["index.js"]
+      "js": ["BoundedBikeshed.user.js"]
     }
   ],
 
