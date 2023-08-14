@@ -9,6 +9,9 @@ Currently supports:
 * [Lobsters](https://lobste.rs/)
 * [Tweakers](https://tweakers.net/)
 
-Note: only activates when there are ten comments or more in a discussion.
+Note: only activates when there are more than ten comments in a discussion.
 
-Firefox Add-on: https://addons.mozilla.org/addon/bounded-bikeshed/
+## Install
+
+* [Firefox Add-on](https://addons.mozilla.org/addon/bounded-bikeshed/)
+* [UserScript](https://greasyfork.org/scripts/473045-boundedbikeshed)

@@ -1,13 +1,15 @@
 // ==UserScript==
 // @name        BoundedBikeshed
-// @namespace   Violentmonkey Scripts
+// @description Focus on the topic instead of the bike shed.
+// @author      Tim Kuijsten
+// @license     ISC
+// @namespace   netsend.nl
+// @supportURL  https://github.com/timkuijsten/BoundedBikeshed
 // @match       https://news.ycombinator.com/item?id=*
 // @match       https://lobste.rs/s/*
 // @match       https://tweakers.net/*
 // @grant       none
-// @version     1.0
-// @author      Tim Kuijsten
-// @description 20-7-2023 15:41:42
+// @version     0.1.0
 // ==/UserScript==
 
 'use strict';
@@ -27,9 +29,6 @@
 // LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 // OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
-
-// Don't automatically digress into the top comment, do a breadth-first-search
-// instead of depth-first-search when scouting peoples opinions.
 
 (function() {
   var activatethresh = 10;
