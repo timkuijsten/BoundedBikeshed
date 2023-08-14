@@ -100,8 +100,6 @@
       var subtotaldescendants = hidesubcommentsTweakers(subcomments)
       totaldescendants += subtotaldescendants;
 
-      // <twk-reaction class="reactie collapsedmarker"><div class="reactieBody">4 reacties verborgen</div></twk-reaction>
-
       var el = document.createElement("twk-reactie")
       var subel = document.createElement("div")
 
@@ -117,7 +115,6 @@
       } else if (subcomments.length == 1) {
         title = '1 reactie';
       }
-      // experiment
       if (subcomments.length > 0) {
         title += ' (+' + (subtotaldescendants - subcomments.length) + ')';
         subel.textContent = 'Reacties';
@@ -127,8 +124,6 @@
       // insert before first subcomment
       comment.insertBefore(el, comment.querySelector(":scope > twk-reaction"));
 
-      //console.log(comment.querySelector(':scope > div.reactieBody'))
-      //comment.querySelector(':scope > div.reactieBody .toggleThread').click();
       var subcommentcontainer = comment;
 
       (function togglesub(scc) {
@@ -262,5 +257,4 @@
       });
     }
   }
-  console.log(allcomments.length);
 })();
