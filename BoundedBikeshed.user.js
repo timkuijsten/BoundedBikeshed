@@ -230,32 +230,30 @@
     return descendants;
   }
 
-  var hostname = window.location.hostname;
-
   var allcomments;
-  if (hostname == "lobste.rs") {
-    allcomments = document.querySelectorAll("li.comments_subtree");
-    // first li.comments_subtree is the reaction form and not an existing comment
-    if (allcomments.length - 1 > activatethresh) {
-      document.querySelectorAll("body > * > ol.comments > li.comments_subtree").forEach(function(comment) {
-        hidesubcommentsLobsters(comment);
-      });
-    }
-  } else if (hostname == "tweakers.net") {
-    allcomments = document.querySelectorAll("twk-reaction");
-    if (allcomments.length > activatethresh) {
-      document.querySelectorAll("#reactieContainer > twk-reaction").forEach(function(comment) {
-        hidesubcommentsTweakers(comment);
-      });
-    }
-  } else if (hostname == "news.ycombinator.com") {
+  switch (window.location.hostname) {
+  case "news.ycombinator.com":
     allcomments = document.querySelectorAll("table.comment-tree tr.comtr");
     if (allcomments.length > activatethresh) {
       document.querySelectorAll("table.comment-tree tr.comtr").forEach(function(comment) {
-        if (Number(comment.querySelector("td.ind").getAttribute("indent")) == 0) {
+        if (comment.querySelector("td[indent='0']")) {
           hidesubcommentsHN(comment);
         }
       });
     }
+    break;
+  case "lobste.rs":
+    allcomments = document.querySelectorAll("li.comments_subtree");
+    // first li.comments_subtree is the reaction form and not an existing comment
+    if (allcomments.length - 1 > activatethresh) {
+      document.querySelectorAll("body > * > ol.comments > li.comments_subtree").forEach(hidesubcommentsLobsters);
+    }
+    break;
+  case "tweakers.net":
+    allcomments = document.querySelectorAll("twk-reaction");
+    if (allcomments.length > activatethresh) {
+      document.querySelectorAll("#reactieContainer > twk-reaction").forEach(hidesubcommentsTweakers);
+    }
+    break;
   }
 })();
