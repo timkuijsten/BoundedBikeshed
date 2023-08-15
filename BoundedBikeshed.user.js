@@ -33,62 +33,64 @@
 (function() {
   var activatethresh = 10;
 
-  // returns the total number of descendants
-  function hidesubcommentsLobsters(comments) {
-    var totaldescendants = comments.length;
-    comments.forEach(function(comment) {
-      // first li.comments_subtree is the reaction form and not an existing comment
-      if (comment.querySelector(".details") == null) {
-        return 0;
-      }
+  // returns the number of descendants of "comment"
+  function hidesubcommentsLobsters(comment) {
+    var descendants = 0;
 
-      var subcomments = comment.querySelectorAll(":scope > ol.comments > li.comments_subtree");
-      var subtotaldescendants = hidesubcommentsLobsters(subcomments);
-      totaldescendants += subtotaldescendants;
+    // first li.comments_subtree is the reaction form and not an existing comment
+    if (comment.querySelector(".details") == null) {
+      return descendants;
+    }
 
-      if (subcomments.length == 0) {
-        return 0;
-      }
+    var subcomments = comment.querySelectorAll(":scope > ol.comments > li.comments_subtree");
+    if (subcomments.length == 0) {
+      return descendants;
+    }
 
-      var el = document.createElement("span");
-      el.textContent = "| ";
-      var subel = document.createElement("span");
-      subel.style.cursor = "pointer";
-
-      var title = "";
-      if (subcomments.length > 1) {
-        title = subcomments.length + " comments";
-      } else {
-        title = "1 comment";
-      }
-
-      title += " (+" + (subtotaldescendants - subcomments.length) + ")";
-      subel.textContent = "comments";
-      subel.title = title;
-
-      el.appendChild(subel);
-      comment.querySelector(".details .byline").appendChild(el);
-
-      var subcommentcontainer = comment.querySelector(":scope > ol.comments");
-
-      (function(scc) {
-        var visible = false;
-        subel.addEventListener("click", function() {
-          if (visible) {
-            scc.remove();
-          } else {
-            comment.appendChild(scc);
-          }
-          visible = !visible;
-        });
-      })(subcommentcontainer);
-
-      subcommentcontainer.remove();
+    subcomments.forEach(function(subcomment) {
+      descendants++;
+      descendants += hidesubcommentsLobsters(subcomment);
     });
 
-    return totaldescendants;
+    var el = document.createElement("span");
+    el.textContent = "| ";
+    var subel = document.createElement("span");
+    subel.style.cursor = "pointer";
+
+    var title = "";
+    if (subcomments.length > 1) {
+      title = subcomments.length + " comments";
+    } else {
+      title = "1 comment";
+    }
+
+    title += " (+" + (descendants - subcomments.length) + ")";
+    subel.textContent = "comments";
+    subel.title = title;
+
+    el.appendChild(subel);
+    comment.querySelector(".details .byline").appendChild(el);
+
+    var subcommentcontainer = comment.querySelector(":scope > ol.comments");
+
+    (function(scc) {
+      var visible = false;
+      subel.addEventListener("click", function() {
+        if (visible) {
+          scc.remove();
+        } else {
+          comment.appendChild(scc);
+        }
+        visible = !visible;
+      });
+    })(subcommentcontainer);
+
+    subcommentcontainer.remove();
+
+    return descendants;
   }
 
+  // returns the number of descendants of "comment"
   function hidesubcommentsTweakers(comment) {
     var descendants = 0;
     var subcomments = comment.querySelectorAll(":scope > twk-reaction");
@@ -96,7 +98,6 @@
       return descendants;
     }
 
-    // recurse into all subcomments
     subcomments.forEach(function(subcomment) {
       descendants++;
       descendants += hidesubcommentsTweakers(subcomment);
@@ -178,7 +179,7 @@
       });
     })(subgroup);
   }
-  // return the number of descendants of comment
+  // returns the number of descendants of "comment"
   function hidesubcommentsHN(comment) {
     var indent = Number(comment.querySelector("td.ind").getAttribute("indent"));
     var curindent;
@@ -236,7 +237,9 @@
     allcomments = document.querySelectorAll("li.comments_subtree");
     // first li.comments_subtree is the reaction form and not an existing comment
     if (allcomments.length - 1 > activatethresh) {
-      hidesubcommentsLobsters(document.querySelectorAll("body > * > ol.comments > li.comments_subtree"));
+      document.querySelectorAll("body > * > ol.comments > li.comments_subtree").forEach(function(comment) {
+        hidesubcommentsLobsters(comment);
+      });
     }
   } else if (hostname == "tweakers.net") {
     allcomments = document.querySelectorAll("twk-reaction");
