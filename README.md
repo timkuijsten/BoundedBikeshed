@@ -13,5 +13,6 @@ Note: only activates when there are more than ten comments in a discussion.
 
 ## Install
 
-* [Firefox Add-on](https://addons.mozilla.org/addon/bounded-bikeshed/)
+* [Firefox](https://addons.mozilla.org/addon/bounded-bikeshed/)
+* [Chrome](https://chrome.google.com/webstore/detail/bounded-bikeshed/cgiaglcnjfomgnodabjhmeffnhhgennh)
 * [UserScript](https://greasyfork.org/scripts/473045-boundedbikeshed)
