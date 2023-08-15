@@ -12,7 +12,7 @@
 // @version     0.2.0
 // ==/UserScript==
 
-'use strict';
+"use strict";
 
 // ISC license
 
@@ -38,12 +38,12 @@
     var totaldescendants = comments.length;
     comments.forEach(function(comment) {
       // first li.comments_subtree is the reaction form and not an existing comment
-      if (comment.querySelector('.details') == null) {
+      if (comment.querySelector(".details") == null) {
         return 0;
       }
 
-      var subcomments = comment.querySelectorAll(':scope > ol.comments > li.comments_subtree');
-      var subtotaldescendants = hidesubcommentsLobsters(subcomments)
+      var subcomments = comment.querySelectorAll(":scope > ol.comments > li.comments_subtree");
+      var subtotaldescendants = hidesubcommentsLobsters(subcomments);
       totaldescendants += subtotaldescendants;
 
       if (subcomments.length == 0) {
@@ -52,46 +52,46 @@
 
       var el = document.createElement("span");
       el.textContent = "| ";
-      var subel = document.createElement("span")
-      subel.style.cursor = 'pointer';
+      var subel = document.createElement("span");
+      subel.style.cursor = "pointer";
 
-      var title = '';
+      var title = "";
       if (subcomments.length > 1) {
         title = subcomments.length + " comments";
       } else {
-        title = '1 comment';
+        title = "1 comment";
       }
 
-      title += ' (+' + (subtotaldescendants - subcomments.length) + ')';
-      subel.textContent = 'comments';
+      title += " (+" + (subtotaldescendants - subcomments.length) + ")";
+      subel.textContent = "comments";
       subel.title = title;
 
       el.appendChild(subel);
-      comment.querySelector('.details .byline').appendChild(el);
+      comment.querySelector(".details .byline").appendChild(el);
 
-      var subcommentcontainer = comment.querySelector(':scope > ol.comments');
+      var subcommentcontainer = comment.querySelector(":scope > ol.comments");
 
       (function(scc) {
         var visible = false;
-        subel.addEventListener('click', function() {
+        subel.addEventListener("click", function() {
           if (visible) {
             scc.remove();
           } else {
-            comment.appendChild(scc)
+            comment.appendChild(scc);
           }
           visible = !visible;
-        })
+        });
       })(subcommentcontainer);
 
       subcommentcontainer.remove();
     });
 
-    return totaldescendants
+    return totaldescendants;
   }
 
   function hidesubcommentsTweakers(comment) {
     var descendants = 0;
-    var subcomments = comment.querySelectorAll(':scope > twk-reaction');
+    var subcomments = comment.querySelectorAll(":scope > twk-reaction");
     if (subcomments.length == 0) {
       return descendants;
     }
@@ -103,44 +103,44 @@
     });
 
     var el = document.createElement("a");
-    el.style.cursor = 'pointer';
-    el.style.marginRight = '12px';
+    el.style.cursor = "pointer";
+    el.style.marginRight = "12px";
 
-    var title = '';
+    var title = "";
     if (subcomments.length > 1) {
       title = subcomments.length + " reacties";
     } else if (subcomments.length == 1) {
-      title = '1 reactie';
+      title = "1 reactie";
     }
     if (subcomments.length > 0) {
-      title += ' (+' + (descendants - subcomments.length) + ')';
-      el.textContent = 'Reacties';
+      title += " (+" + (descendants - subcomments.length) + ")";
+      el.textContent = "Reacties";
       el.title = title;
     }
 
-    var footer = comment.querySelector(".reactieFooter")
+    var footer = comment.querySelector(".reactieFooter");
     footer.insertBefore(el, footer.querySelector("a"));
 
     var subcommentcontainer = comment;
 
     (function togglesub(scc) {
       var visible = false;
-      el.addEventListener('click', function() {
+      el.addEventListener("click", function() {
         if (visible) {
-          scc.querySelectorAll(':scope > twk-reaction').forEach(function(el) {
-            el.style.display = 'none';
+          scc.querySelectorAll(":scope > twk-reaction").forEach(function(el) {
+            el.style.display = "none";
           });
         } else {
-          scc.querySelectorAll(':scope > twk-reaction').forEach(function(el) {
-            el.style.display = '';
+          scc.querySelectorAll(":scope > twk-reaction").forEach(function(el) {
+            el.style.display = "";
           });
         }
         visible = !visible;
-      })
+      });
     })(subcommentcontainer);
 
-    subcommentcontainer.querySelectorAll(':scope > twk-reaction').forEach(function(el) {
-      el.style.display = 'none';
+    subcommentcontainer.querySelectorAll(":scope > twk-reaction").forEach(function(el) {
+      el.style.display = "none";
     });
 
     return descendants;
@@ -150,21 +150,21 @@
     var el = document.createElement("span");
     el.textContent = "| ";
     var subel = document.createElement("span");
-    subel.style.cursor = 'pointer';
-    var title = '';
+    subel.style.cursor = "pointer";
+    var title = "";
     if (subgroup.length > 1) {
       title = subgroup.length + " subcomments";
     } else if (subgroup.length == 1) {
-      title = '1 subcomment';
+      title = "1 subcomment";
     }
-    title += ' (+' + (nrdescendants - subgroup.length) + ')';
-    subel.textContent += 'comments';
+    title += " (+" + (nrdescendants - subgroup.length) + ")";
+    subel.textContent += "comments";
     subel.title = title;
     el.append(subel);
     comment.querySelector("span.comhead").append(el);
     (function togglesub(sg) {
       var visible = false;
-      subel.addEventListener('click', function() {
+      subel.addEventListener("click", function() {
         if (visible) {
           sg.forEach(function(el) {
             el.classList.add("noshow");
@@ -175,12 +175,12 @@
           });
         }
         visible = !visible;
-      })
+      });
     })(subgroup);
   }
   // return the number of descendants of comment
   function hidesubcommentsHN(comment) {
-    var indent = Number(comment.querySelector('td.ind').getAttribute("indent"));
+    var indent = Number(comment.querySelector("td.ind").getAttribute("indent"));
     var curindent;
     var nextcomment = comment.nextElementSibling;
     var subgroup = [];
@@ -189,7 +189,7 @@
       // if not a descendant, return
       // if not a child, recurse
       // else add to group of childs
-      var tdind = nextcomment.querySelector('td.ind');
+      var tdind = nextcomment.querySelector("td.ind");
       if (tdind == null) {
         if (subgroup.length > 0) {
           HNaddbutton(comment, subgroup, descendants);
