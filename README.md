@@ -1,15 +1,20 @@
 ![Bounded Bikeshed icon](./icons/bb-128.png)
 # Bounded Bikeshed
 
-Save time and focus on on-topic comments first, then only unfold any sub-comments you find interesting. This avoids
-getting caught in top-post [bikeshedding](https://en.wiktionary.org/wiki/bikeshedding#English).
+Save time and avoid getting caught by long threads in a discussion. Instead, get an overview of different opinions about
+a topic and dive into the ones you find most interesting.
 
-Currently supports:
+Supports:
 * [Hacker News](https://news.ycombinator.com/)
 * [Lobsters](https://lobste.rs/)
 * [Tweakers](https://tweakers.net/)
 
 Note: only activates when there are more than ten comments in a discussion.
+
+
+[bikeshedding](https://en.wiktionary.org/wiki/bikeshedding#English) *noun*  
+  : futile expenditure of time and energy in discussion of marginal technical issues
+
 
 ## Install
 
