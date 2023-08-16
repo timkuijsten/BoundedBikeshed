@@ -9,7 +9,7 @@
 // @match       https://lobste.rs/s/*
 // @match       https://tweakers.net/*/*
 // @grant       none
-// @version     0.3.0
+// @version     0.3.1
 // ==/UserScript==
 
 "use strict";
