@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        BoundedBikeshed
-// @description Focus on the topic instead of the bike shed.
+// @description Avoid getting caught by long threads in a discussion.
 // @author      Tim Kuijsten
 // @license     ISC
 // @namespace   netsend.nl
