@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        BoundedBikeshed
+// @name        Bounded Bikeshed
 // @description Avoid getting caught by long threads in a discussion.
 // @author      Tim Kuijsten
 // @license     ISC
