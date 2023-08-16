@@ -3,7 +3,7 @@
   "name": "Bounded Bikeshed",
   "version": "0.3.0",
 
-  "description": "Focus on the topic instead of the bike shed.",
+  "description": "Avoid getting caught by long threads in a discussion.",
 
   "content_scripts": [
     {
