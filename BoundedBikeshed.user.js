@@ -149,9 +149,9 @@
     subel.style.cursor = "pointer";
     var title = "";
     if (subgroup.length > 1) {
-      title = subgroup.length + " subcomments";
+      title = subgroup.length + " comments";
     } else if (subgroup.length == 1) {
-      title = "1 subcomment";
+      title = "1 comment";
     }
     title += " (+" + (nrdescendants - subgroup.length) + ")";
     subel.textContent += "comments";
