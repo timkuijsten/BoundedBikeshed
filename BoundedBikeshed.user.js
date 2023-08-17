@@ -140,7 +140,7 @@
       });
     })(subcommentcontainer);
 
-    subcommentcontainer.querySelectorAll(":scope > twk-reaction").forEach(function(el) {
+    subcomments.forEach(function(el) {
       el.style.display = "none";
     });
 
@@ -235,7 +235,7 @@
   case "news.ycombinator.com":
     allcomments = document.querySelectorAll("table.comment-tree tr.comtr");
     if (allcomments.length > activatethresh) {
-      document.querySelectorAll("table.comment-tree tr.comtr").forEach(function(comment) {
+      allcomments.forEach(function(comment) {
         if (comment.querySelector("td[indent='0']")) {
           hidesubcommentsHN(comment);
         }
