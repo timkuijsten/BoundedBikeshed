@@ -30,6 +30,8 @@
   "use strict";
 
   var activatethresh = 10;
+  var showSubcommentCount = true;
+  var showDescendantCount = true; // default userscript to showing the number of descendants
 
   // returns the number of descendants of "comment"
   function hidesubcommentsLobsters(comment) {
@@ -54,17 +56,19 @@
     el.textContent = "| ";
     var subel = document.createElement("span");
     subel.style.cursor = "pointer";
-
-    var title = "";
-    if (subcomments.length > 1) {
-      title = subcomments.length + " comments";
-    } else {
-      title = "1 comment";
+    var cstr = "comments";
+    if (descendants === 1) {
+      cstr = "comment";
     }
-
-    title += " (+" + (descendants - subcomments.length) + ")";
-    subel.textContent = "comments";
-    subel.title = title;
+    if (showSubcommentCount) {
+      subel.textContent = subcomments.length;
+      if (showDescendantCount && descendants - subcomments.length > 0) {
+        subel.textContent += "+" + (descendants - subcomments.length);
+      }
+      subel.textContent += " " + cstr;
+    } else {
+      subel.textContent = cstr;
+    }
 
     el.appendChild(subel);
     comment.querySelector(".details .byline").appendChild(el);
@@ -115,17 +119,13 @@
     var el = document.createElement("a");
     el.style.cursor = "pointer";
     el.style.marginRight = "12px";
-
-    var title = "";
-    if (subcomments.length > 1) {
-      title = subcomments.length + " reacties";
-    } else if (subcomments.length == 1) {
-      title = "1 reactie";
-    }
-    if (subcomments.length > 0) {
-      title += " (+" + (descendants - subcomments.length) + ")";
-      el.textContent = "Reacties";
-      el.title = title;
+    el.textContent = "Reacties";
+    if (showSubcommentCount) {
+      el.textContent += " (" + subcomments.length;
+      if (showDescendantCount && descendants - subcomments.length > 0) {
+        el.textContent += "+" + (descendants - subcomments.length);
+      }
+      el.textContent += ")";
     }
 
     footer.prepend(el);
@@ -154,15 +154,20 @@
     el.textContent = "| ";
     var subel = document.createElement("span");
     subel.style.cursor = "pointer";
-    var title = "";
-    if (subgroup.length > 1) {
-      title = subgroup.length + " comments";
-    } else if (subgroup.length == 1) {
-      title = "1 comment";
+    var cstr = "comments";
+    if (descendants === 1) {
+      cstr = "comment";
     }
-    title += " (+" + (nrdescendants - subgroup.length) + ")";
-    subel.textContent += "comments";
-    subel.title = title;
+    if (showSubcommentCount) {
+      subel.textContent = subgroup.length;
+      if (showDescendantCount && nrdescendants - subgroup.length > 0) {
+        subel.textContent += "+" + (nrdescendants - subgroup.length);
+      }
+      subel.textContent += " " + cstr;
+    } else {
+      subel.textContent = cstr;
+    }
+
     el.append(subel);
     comment.querySelector("span.comhead").append(el);
     (function togglesub(sg) {
