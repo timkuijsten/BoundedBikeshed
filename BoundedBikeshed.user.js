@@ -12,8 +12,6 @@
 // @version     0.3.1
 // ==/UserScript==
 
-"use strict";
-
 // ISC license
 
 // Copyright (C) 2023 Tim Kuijsten
@@ -31,6 +29,8 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 (function() {
+  "use strict";
+
   var activatethresh = 10;
 
   // returns the number of descendants of "comment"
