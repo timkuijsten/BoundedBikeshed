@@ -12,8 +12,6 @@
 // @version     0.3.1
 // ==/UserScript==
 
-// ISC license
-
 // Copyright (C) 2023 Tim Kuijsten
 //
 // Permission to use, copy, modify, and/or distribute this software for any
