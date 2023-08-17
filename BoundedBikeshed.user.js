@@ -99,6 +99,7 @@
     }
 
     subcomments.forEach(function(subcomment) {
+      subcomment.style.display = "none";
       descendants++;
       descendants += hidesubcommentsTweakers(subcomment);
     });
@@ -122,8 +123,6 @@
     var footer = comment.querySelector(".reactieFooter");
     footer.insertBefore(el, footer.querySelector("a"));
 
-    var subcommentcontainer = comment;
-
     (function togglesub(scc) {
       var visible = false;
       el.addEventListener("click", function() {
@@ -138,11 +137,7 @@
         }
         visible = !visible;
       });
-    })(subcommentcontainer);
-
-    subcomments.forEach(function(el) {
-      el.style.display = "none";
-    });
+    })(comment);
 
     return descendants;
   }
