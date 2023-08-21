@@ -102,6 +102,16 @@
       descendants += hidesubcommentsTweakers(subcomment);
     });
 
+    // Depending on the user selected moderation filter, some comments are collapsed and have no footer until it is
+    // fetched with a separate GET after the user unfolds the comment. This also sometimes happens when connecting from
+    // the Tor network.
+    var footer = comment.querySelector(":scope > .reactieBody > .reactieFooter");
+    if (footer == null) {
+      footer = document.createElement("div");
+      footer.classList.add("reactieFooter");
+      comment.querySelector(".reactieBody").append(footer);
+    }
+
     var el = document.createElement("a");
     el.style.cursor = "pointer";
     el.style.marginRight = "12px";
@@ -118,8 +128,7 @@
       el.title = title;
     }
 
-    var footer = comment.querySelector(".reactieFooter");
-    footer.insertBefore(el, footer.querySelector("a"));
+    footer.prepend(el);
 
     (function togglesub(scc) {
       var visible = false;
