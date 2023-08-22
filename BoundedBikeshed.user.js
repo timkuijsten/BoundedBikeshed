@@ -149,7 +149,7 @@
     return descendants;
   }
 
-  function HNaddbutton(comment, subgroup, nrdescendants) {
+  function HNaddbutton(comment, subgroup, descendants) {
     var el = document.createElement("span");
     el.textContent = "| ";
     var subel = document.createElement("span");
@@ -160,8 +160,8 @@
     }
     if (showSubcommentCount) {
       subel.textContent = subgroup.length;
-      if (showDescendantCount && nrdescendants - subgroup.length > 0) {
-        subel.textContent += "+" + (nrdescendants - subgroup.length);
+      if (showDescendantCount && descendants - subgroup.length > 0) {
+        subel.textContent += "+" + (descendants - subgroup.length);
       }
       subel.textContent += " " + cstr;
     } else {
