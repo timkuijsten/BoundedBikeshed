@@ -171,18 +171,20 @@
     el.append(subel);
     comment.querySelector("span.comhead").append(el);
     (function togglesub(sg) {
-      var visible = false;
       subel.addEventListener("click", function() {
-        if (visible) {
-          sg.forEach(function(el) {
-            el.classList.add("noshow");
-          });
-        } else {
+        var nextcomment = sg[0];
+        if (nextcomment.classList.contains("noshow")) {
+          // only show direct sub-comments
           sg.forEach(function(el) {
             el.classList.remove("noshow");
           });
+        } else {
+          // collapse all
+          for (var i = descendants; i > 0; i--) {
+            nextcomment.classList.add("noshow");
+            nextcomment = nextcomment.nextElementSibling;
+          }
         }
-        visible = !visible;
       });
     })(subgroup);
   }
