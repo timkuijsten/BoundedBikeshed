@@ -1,0 +1,11 @@
+#activationThreshold {
+  width: 4em;
+}
+
+.out {
+  opacity: 0;
+}
+.fadein {
+  opacity: 1;
+  transition: opacity 400ms linear;
+}

@@ -9,8 +9,6 @@ Supports:
 * [Lobsters](https://lobste.rs/)
 * [Tweakers](https://tweakers.net/)
 
-Note: only activates when there are more than ten comments in a discussion.
-
 
 [bikeshedding](https://en.wiktionary.org/wiki/bikeshedding#English) *noun*  
   : futile expenditure of time and energy in discussion of marginal technical issues

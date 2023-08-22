@@ -239,30 +239,59 @@
     return descendants;
   }
 
-  var allcomments;
-  switch (window.location.hostname) {
-  case "news.ycombinator.com":
-    allcomments = document.querySelectorAll("table.comment-tree tr.comtr");
-    if (allcomments.length > activatethresh) {
-      allcomments.forEach(function(comment) {
-        if (comment.querySelector("td[indent='0']")) {
-          hidesubcommentsHN(comment);
-        }
-      });
+  function main() {
+    var allcomments;
+    switch (window.location.hostname) {
+    case "news.ycombinator.com":
+      allcomments = document.querySelectorAll("table.comment-tree tr.comtr");
+      if (allcomments.length >= activatethresh) {
+        allcomments.forEach(function(comment) {
+          if (comment.querySelector("td[indent='0']")) {
+            hidesubcommentsHN(comment);
+          }
+        });
+      }
+      break;
+    case "lobste.rs":
+      allcomments = document.querySelectorAll("li.comments_subtree");
+      // first li.comments_subtree is the reaction form and not an existing comment
+      if (allcomments.length - 1 >= activatethresh) {
+        document.querySelectorAll("body > * > ol.comments > li.comments_subtree").forEach(hidesubcommentsLobsters);
+      }
+      break;
+    case "tweakers.net":
+      allcomments = document.querySelectorAll("twk-reaction");
+      if (allcomments.length >= activatethresh) {
+        document.querySelectorAll("#reactieContainer > twk-reaction").forEach(hidesubcommentsTweakers);
+      }
+      break;
     }
-    break;
-  case "lobste.rs":
-    allcomments = document.querySelectorAll("li.comments_subtree");
-    // first li.comments_subtree is the reaction form and not an existing comment
-    if (allcomments.length - 1 > activatethresh) {
-      document.querySelectorAll("body > * > ol.comments > li.comments_subtree").forEach(hidesubcommentsLobsters);
-    }
-    break;
-  case "tweakers.net":
-    allcomments = document.querySelectorAll("twk-reaction");
-    if (allcomments.length > activatethresh) {
-      document.querySelectorAll("#reactieContainer > twk-reaction").forEach(hidesubcommentsTweakers);
-    }
-    break;
+  }
+
+  // check if we're running as an extension for firefox or chrome with stored preferences, or as a userscript
+  var s;
+  if (typeof browser !== "undefined") {
+    // firefox
+    s = browser.storage;
+  } else if (typeof chrome !== "undefined") {
+    // chrome
+    s = chrome.storage;
+  }
+
+  if (s != null) {
+    var f1 = s.sync.get("activationThreshold").then(function(res) {
+      activatethresh = Number(res.activationThreshold);
+    });
+    var f2 = s.sync.get("showSubcommentCount").then(function(res) {
+      showSubcommentCount = !!res.showSubcommentCount;
+    });
+    var f3 = s.sync.get("showDescendantCount").then(function(res) {
+      showDescendantCount = !!res.showDescendantCount;
+    });
+    Promise.all([ f1, f2, f3 ]).then(function() {
+      main();
+    });
+  } else {
+    main();
   }
 })();

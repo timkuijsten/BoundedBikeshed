@@ -12,6 +12,11 @@
     }
   ],
 
+  "permissions": ["storage"],
+  "options_ui": {
+    "page": "options/options.html"
+  },
+
   "icons": {
     "48": "icons/bb-48.png",
     "96": "icons/bb-96.png",
