@@ -18,4 +18,4 @@ Supports:
 
 * [Firefox](https://addons.mozilla.org/addon/bounded-bikeshed/)
 * [Chrome](https://chrome.google.com/webstore/detail/bounded-bikeshed/cgiaglcnjfomgnodabjhmeffnhhgennh)
-* [UserScript](https://netsend.nl/BoundedBikeshed.user.js) ([gf](https://greasyfork.org/scripts/473045-bounded-bikeshed), [oujs](https://openuserjs.org/scripts/kuijsten/Bounded_Bikeshed))
+* [UserScript](https://greasyfork.org/scripts/473045-bounded-bikeshed)
