@@ -1,3 +1,12 @@
+2023.08.23, Version 0.4.0
+
+* new user preferences configuration screen
+* fix collapsing comments on HN
+* show number of subcomments
+* fix missing links on tweakers.net
+* code cleanups
+
+
 2023.08.16, Version 0.3.1
 
 * update description in manifest
