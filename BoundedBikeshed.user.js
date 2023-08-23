@@ -9,7 +9,7 @@
 // @match       https://lobste.rs/s/*
 // @match       https://tweakers.net/*/*
 // @grant       none
-// @version     0.4.0
+// @version     0.4.1
 // ==/UserScript==
 
 // Copyright (C) 2023 Tim Kuijsten
