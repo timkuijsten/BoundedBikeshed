@@ -280,16 +280,24 @@
 
   if (s != null) {
     var f1 = s.sync.get("activationThreshold").then(function(res) {
-      activatethresh = Number(res.activationThreshold);
+      if (Object.hasOwn(res, "activationThreshold") && typeof res.activationThreshold === "number") {
+        activatethresh = res.activationThreshold;
+      }
     });
     var f2 = s.sync.get("showSubcommentCount").then(function(res) {
-      showSubcommentCount = !!res.showSubcommentCount;
+      if (Object.hasOwn(res, "showSubcommentCount") && typeof res.showSubcommentCount === "boolean") {
+        showSubcommentCount = res.showSubcommentCount;
+      }
     });
     var f3 = s.sync.get("showDescendantCount").then(function(res) {
-      showDescendantCount = !!res.showDescendantCount;
+      if (Object.hasOwn(res, "showDescendantCount") && typeof res.showDescendantCount === "boolean") {
+        showDescendantCount = res.showDescendantCount;
+      } else {
+        showDescendantCount = false; // disable by default when executing as an extension
+      }
     });
-    Promise.all([ f1, f2, f3 ]).then(function() {
-      main();
+    Promise.all([ f1, f2, f3 ]).then(main).catch(function(err) {
+      console.error(err);
     });
   } else {
     main();
