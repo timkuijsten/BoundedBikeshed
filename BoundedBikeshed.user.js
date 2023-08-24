@@ -4,7 +4,8 @@
 // @author      Tim Kuijsten
 // @license     ISC
 // @namespace   netsend.nl
-// @supportURL  https://github.com/timkuijsten/BoundedBikeshed
+// @homepageURL https://github.com/timkuijsten/BoundedBikeshed
+// @icon        https://netsend.nl/bb-128.png
 // @match       https://news.ycombinator.com/item?id=*
 // @match       https://lobste.rs/s/*
 // @match       https://tweakers.net/*/*
