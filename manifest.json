@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Bounded Bikeshed",
-  "version": "0.4.1",
+  "version": "0.4.2",
 
   "description": "Avoid getting caught by long threads in a discussion.",
 
