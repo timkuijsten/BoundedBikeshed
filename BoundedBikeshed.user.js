@@ -29,7 +29,7 @@
 (function() {
   "use strict";
 
-  var activatethresh = 10;
+  var activationThreshold = 10;
   var showSubcommentCount = true;
   var showDescendantCount = true; // default userscript to showing the number of descendants
 
@@ -244,7 +244,7 @@
     switch (window.location.hostname) {
     case "news.ycombinator.com":
       allcomments = document.querySelectorAll("table.comment-tree tr.comtr");
-      if (allcomments.length >= activatethresh) {
+      if (allcomments.length >= activationThreshold) {
         allcomments.forEach(function(comment) {
           if (comment.querySelector("td[indent='0']")) {
             hidesubcommentsHN(comment);
@@ -255,13 +255,13 @@
     case "lobste.rs":
       allcomments = document.querySelectorAll("li.comments_subtree");
       // first li.comments_subtree is the reaction form and not an existing comment
-      if (allcomments.length - 1 >= activatethresh) {
+      if (allcomments.length - 1 >= activationThreshold) {
         document.querySelectorAll("body > * > ol.comments > li.comments_subtree").forEach(hidesubcommentsLobsters);
       }
       break;
     case "tweakers.net":
       allcomments = document.querySelectorAll("twk-reaction");
-      if (allcomments.length >= activatethresh) {
+      if (allcomments.length >= activationThreshold) {
         document.querySelectorAll("#reactieContainer > twk-reaction").forEach(hidesubcommentsTweakers);
       }
       break;
@@ -281,7 +281,7 @@
   if (s != null) {
     var f1 = s.sync.get("activationThreshold").then(function(res) {
       if (Object.hasOwn(res, "activationThreshold") && typeof res.activationThreshold === "number") {
-        activatethresh = res.activationThreshold;
+        activationThreshold = res.activationThreshold;
       }
     });
     var f2 = s.sync.get("showSubcommentCount").then(function(res) {
