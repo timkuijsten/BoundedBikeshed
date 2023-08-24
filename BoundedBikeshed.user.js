@@ -33,6 +33,27 @@
   var showSubcommentCount = true;
   var showDescendantCount = true; // default userscript to showing the number of descendants
 
+  // Create a string that shows the number of subcomments and optionally the number of descendants in English.
+  // nrchildnodes it the number of child nodes, nrdescendants is the total number of descendants (including the number
+  // of child nodes).
+  function createCommentString(nrchildnodes, nrdescendants) {
+    var cstr = "comments";
+    if (nrchildnodes === 1) {
+      cstr = "comment";
+    }
+
+    if (!showSubcommentCount) {
+      return cstr;
+    }
+
+    var r = nrchildnodes;
+    if (showDescendantCount && (nrdescendants - nrchildnodes) > 0) {
+      r += "+" + (nrdescendants - nrchildnodes);
+      cstr = "comments";
+    }
+    return r + " " + cstr;
+  }
+
   // returns the number of descendants of "comment"
   function hidesubcommentsLobsters(comment) {
     var descendants = 0;
@@ -56,19 +77,7 @@
     el.textContent = "| ";
     var subel = document.createElement("span");
     subel.style.cursor = "pointer";
-    var cstr = "comments";
-    if (descendants === 1) {
-      cstr = "comment";
-    }
-    if (showSubcommentCount) {
-      subel.textContent = subcomments.length;
-      if (showDescendantCount && descendants - subcomments.length > 0) {
-        subel.textContent += "+" + (descendants - subcomments.length);
-      }
-      subel.textContent += " " + cstr;
-    } else {
-      subel.textContent = cstr;
-    }
+    subel.textContent = createCommentString(subcomments.length, descendants);
 
     el.appendChild(subel);
     comment.querySelector(".details .byline").appendChild(el);
@@ -154,19 +163,7 @@
     el.textContent = "| ";
     var subel = document.createElement("span");
     subel.style.cursor = "pointer";
-    var cstr = "comments";
-    if (descendants === 1) {
-      cstr = "comment";
-    }
-    if (showSubcommentCount) {
-      subel.textContent = subgroup.length;
-      if (showDescendantCount && descendants - subgroup.length > 0) {
-        subel.textContent += "+" + (descendants - subgroup.length);
-      }
-      subel.textContent += " " + cstr;
-    } else {
-      subel.textContent = cstr;
-    }
+    subel.textContent = createCommentString(subgroup.length, descendants);
 
     el.append(subel);
     comment.querySelector("span.comhead").append(el);
