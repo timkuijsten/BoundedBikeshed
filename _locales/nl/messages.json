@@ -1,0 +1,20 @@
+{
+  "extName": {
+    "message": "Bounded Bikeshed"
+  },
+  "extDesc": {
+    "message": "Focus op de reacties die jij het meest interessant vindt."
+  },
+  "activationThreshold": {
+    "message": "Activeer vanaf"
+  },
+  "comments": {
+    "message": "reacties"
+  },
+  "showNumberComments": {
+    "message": "Toon aantal reacties"
+  },
+  "showNumberDescendants": {
+    "message": "Toon aantal dieper liggende reacties"
+  }
+}

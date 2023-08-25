@@ -6,9 +6,19 @@
   </head>
   <body>
     <form>
-      <div><label>Activation threshold: <input type="number" min="2" max="9999" id="activationThreshold" name="activationThreshold" /> comments</label></div>
-      <div><label>Show number of sub-comments: <input type="checkbox" id="showSubcommentCount" name="showSubcommentCount" /></label></div>
-      <div><label>Show number of descendants:  <input type="checkbox" id="showDescendantCount" name="showDescendantCount" /></label></div>
+      <div>
+        <label for="activationThreshold"><span class="to-translate">activationThreshold</span>:</label>
+        <input type="number" min="2" max="9999" id="activationThreshold" name="activationThreshold">
+        <span class="to-translate">comments</span>
+      </div>
+      <div>
+        <label for="showSubcommentCount"><span class="to-translate">showNumberComments</span>:</label>
+        <input type="checkbox" id="showSubcommentCount" name="showSubcommentCount">
+      </div>
+      <div>
+        <label for="showDescendantCount"><span class="to-translate">showNumberDescendants</span>:</label>
+        <input type="checkbox" id="showDescendantCount" name="showDescendantCount">
+      </div>
       <div class="out" id="feedback"></div>
     </form>
     <script src="options.js"></script>

@@ -1,16 +1,18 @@
 // ==UserScript==
-// @name        Bounded Bikeshed
-// @description Avoid getting caught by long threads in a discussion.
-// @author      Tim Kuijsten
-// @license     ISC
-// @namespace   netsend.nl
-// @homepageURL https://github.com/timkuijsten/BoundedBikeshed
-// @icon        https://netsend.nl/bb-128.png
-// @match       https://news.ycombinator.com/item?id=*
-// @match       https://lobste.rs/s/*
-// @match       https://tweakers.net/*/*
-// @grant       none
-// @version     0.4.2
+// @name           Bounded Bikeshed
+// @name:nl        Bounded Bikeshed
+// @description    Focus on the comments you find most interesting.
+// @description:nl Focus op de reacties die jij het meest interessant vindt.
+// @author         Tim Kuijsten
+// @license        ISC
+// @namespace      netsend.nl
+// @homepageURL    https://github.com/timkuijsten/BoundedBikeshed
+// @icon           https://netsend.nl/bb-128.png
+// @match          https://news.ycombinator.com/item?id=*
+// @match          https://lobste.rs/s/*
+// @match          https://tweakers.net/*/*
+// @grant          none
+// @version        0.4.2
 // ==/UserScript==
 
 // Copyright (C) 2023 Tim Kuijsten

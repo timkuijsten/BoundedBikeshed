@@ -1,0 +1,22 @@
+{
+  "extName": {
+    "message": "Bounded Bikeshed",
+    "description": "The name of the extension."
+  },
+  "extDesc": {
+    "message": "Focus on the comments you find most interesting.",
+    "description": "The description of the extension."
+  },
+  "activationThreshold": {
+    "message": "Activation threshold"
+  },
+  "comments": {
+    "message": "comments"
+  },
+  "showNumberComments": {
+    "message": "Show number of sub-comments"
+  },
+  "showNumberDescendants": {
+    "message": "Show number of descendants"
+  }
+}

@@ -1,15 +1,22 @@
+var b;
+if (typeof browser !== "undefined") {
+  b = browser;
+} else {
+  b = chrome;
+}
+
+var s = b.storage;
+
 var form = document.querySelector("form");
 var activationThreshold = document.getElementById("activationThreshold");
 var showSubcommentCount = document.getElementById("showSubcommentCount");
 var showDescendantCount = document.getElementById("showDescendantCount");
 var feedback = document.getElementById("feedback");
 
-var s;
-if (typeof browser !== "undefined") {
-  s = browser.storage;
-} else {
-  s = chrome.storage;
-}
+// l10n
+document.querySelectorAll(".to-translate").forEach(function(el) {
+  el.textContent = b.i18n.getMessage(el.textContent);
+});
 
 function saveOptions(e) {
   feedback.classList.remove("fadein");
