@@ -1,8 +1,9 @@
 ![Bounded Bikeshed icon](./icons/bb-128.png)
 # Bounded Bikeshed
 
-Save time and avoid getting caught by long threads in a discussion. Instead, get an overview of different opinions about
-a topic and dive into the ones you find most interesting.
+Save time and go through a discussion breadth-first instead of depth-first. This avoids getting caught by long threads
+and gives you an overview of different comments on a topic first so that you can dive into the ones you find most
+interesting, for only as deep as you want.
 
 Supports:
 * [Hacker News](https://news.ycombinator.com/)
