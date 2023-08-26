@@ -1,8 +1,8 @@
 ![Bounded Bikeshed icon](./icons/bb-128.png)
 # Bounded Bikeshed
 
-Save time and go through a discussion breadth-first instead of depth-first. This avoids getting caught by long threads
-and gives you an overview of different comments on a topic first so that you can dive into the ones you find most
+Save time and go through a discussion breadth-first instead of depth-first. This avoids automatically getting caught by
+long threads and gives you an overview of different comments on a topic so that you can dive into the ones you find most
 interesting, for only as deep as you want.
 
 Supports:
