@@ -5,6 +5,8 @@ Save time and go through a discussion breadth-first instead of depth-first. This
 long threads and gives you an overview of different comments on a topic so that you can dive into the ones you find most
 interesting, for only as deep as you want.
 
+![Bounded Bikeshed demo](https://netsend.nl/bb-demo-lobsters.gif)
+
 Supports:
 * [Hacker News](https://news.ycombinator.com/)
 * [Lobsters](https://lobste.rs/)
