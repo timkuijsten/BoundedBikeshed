@@ -60,12 +60,6 @@
   // returns the number of descendants of "comment"
   function hidesubcommentsLobsters(comment) {
     var descendants = 0;
-
-    // first li.comments_subtree is the reaction form and not an existing comment
-    if (comment.querySelector(".details") == null) {
-      return descendants;
-    }
-
     var subcomments = comment.querySelectorAll(":scope > ol.comments > li.comments_subtree");
     if (subcomments.length == 0) {
       return descendants;
@@ -253,10 +247,9 @@
       }
       break;
     case "lobste.rs":
-      allcomments = document.querySelectorAll("li.comments_subtree");
-      // first li.comments_subtree is the reaction form and not an existing comment
-      if (allcomments.length - 1 >= activationThreshold) {
-        document.querySelectorAll("body > * > ol.comments > li.comments_subtree").forEach(hidesubcommentsLobsters);
+      allcomments = document.querySelectorAll("body > * > ol.comments > li.comments_subtree > ol.comments li.comments_subtree");
+      if (allcomments.length >= activationThreshold) {
+        document.querySelectorAll("body > * > ol.comments > li.comments_subtree > ol.comments > li.comments_subtree").forEach(hidesubcommentsLobsters);
       }
       break;
     case "tweakers.net":
