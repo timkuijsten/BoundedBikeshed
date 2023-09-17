@@ -286,7 +286,7 @@
       if (Object.hasOwn(res, "showDescendantCount") && typeof res.showDescendantCount === "boolean") {
         showDescendantCount = res.showDescendantCount;
       } else {
-        showDescendantCount = false; // disable by default when executing as an extension
+        showDescendantCount = true; // enable by default when executing as an extension
       }
     });
     Promise.all([ f1, f2, f3 ]).then(main).catch(function(err) {

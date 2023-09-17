@@ -57,7 +57,7 @@ function restoreOptions() {
   });
   s.sync.get("showDescendantCount").then(function(res) {
     if (typeof res.showDescendantCount !== "boolean") {
-      showDescendantCount.checked = false;
+      showDescendantCount.checked = true;
     } else {
       showDescendantCount.checked = res.showDescendantCount;
     }
