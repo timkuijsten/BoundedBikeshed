@@ -2,6 +2,10 @@
   width: 4em;
 }
 
+ol {
+  list-style-type: none;
+}
+
 .out {
   opacity: 0;
 }
