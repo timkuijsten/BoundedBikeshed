@@ -5,6 +5,9 @@
   "extDesc": {
     "message": "Focus op de reacties die jij het meest interessant vindt."
   },
+  "extToggle": {
+    "message": "Toon alle reacties"
+  },
   "activationThreshold": {
     "message": "Activeer vanaf"
   },

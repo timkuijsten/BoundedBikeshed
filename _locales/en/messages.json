@@ -7,6 +7,9 @@
     "message": "Focus on the comments you find most interesting.",
     "description": "The description of the extension."
   },
+  "extToggle": {
+    "message": "Show all comments"
+  },
   "activationThreshold": {
     "message": "Activation threshold"
   },

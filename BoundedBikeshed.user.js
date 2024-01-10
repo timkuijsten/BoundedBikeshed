@@ -36,6 +36,8 @@
   var showSubcommentCount = true;
   var showDescendantCount = true; // default userscript to showing the number of descendants
 
+  var showall = [];
+
   // Create a string that shows the number of subcomments and optionally the number of descendants in English.
   // nrchildnodes it the number of child nodes, nrdescendants is the total number of descendants (including the number
   // of child nodes).
@@ -90,6 +92,13 @@
           comment.appendChild(scc);
         }
         visible = !visible;
+      });
+
+      showall.push(function() {
+        if (!visible) {
+          comment.appendChild(scc);
+          visible = true;
+        }
       });
     })(subcommentcontainer);
 
@@ -149,6 +158,15 @@
           });
         }
         visible = !visible;
+      });
+
+      showall.push(function() {
+        if (!visible) {
+          scc.querySelectorAll(":scope > twk-reaction").forEach(function(el) {
+            el.style.display = "";
+          });
+          visible = true;
+        }
       });
     })(comment);
 
@@ -244,6 +262,12 @@
             hidesubcommentsHN(comment);
           }
         });
+
+        showall.push(function() {
+          allcomments.forEach(function(comment) {
+            comment.classList.remove("noshow");
+          });
+        });
       }
       break;
     case "lobste.rs":
@@ -262,27 +286,27 @@
   }
 
   // check if we're running as an extension for firefox or chrome with stored preferences, or as a userscript
-  var s;
+  var b;
   if (typeof browser !== "undefined") {
     // firefox
-    s = browser.storage;
+    b = browser;
   } else if (typeof chrome !== "undefined") {
     // chrome
-    s = chrome.storage;
+    b = chrome;
   }
 
-  if (s != null) {
-    var f1 = s.sync.get("activationThreshold").then(function(res) {
+  if (b != null) {
+    var f1 = b.storage.sync.get("activationThreshold").then(function(res) {
       if (Object.hasOwn(res, "activationThreshold") && typeof res.activationThreshold === "number") {
         activationThreshold = res.activationThreshold;
       }
     });
-    var f2 = s.sync.get("showSubcommentCount").then(function(res) {
+    var f2 = b.storage.sync.get("showSubcommentCount").then(function(res) {
       if (Object.hasOwn(res, "showSubcommentCount") && typeof res.showSubcommentCount === "boolean") {
         showSubcommentCount = res.showSubcommentCount;
       }
     });
-    var f3 = s.sync.get("showDescendantCount").then(function(res) {
+    var f3 = b.storage.sync.get("showDescendantCount").then(function(res) {
       if (Object.hasOwn(res, "showDescendantCount") && typeof res.showDescendantCount === "boolean") {
         showDescendantCount = res.showDescendantCount;
       } else {
@@ -291,6 +315,12 @@
     });
     Promise.all([ f1, f2, f3 ]).then(main).catch(function(err) {
       console.error(err);
+    });
+
+    b.runtime.onMessage.addListener(function() {
+      for (let i = 0; i < showall.length; i++) {
+        showall[i]();
+      }
     });
   } else {
     main();
