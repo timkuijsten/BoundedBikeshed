@@ -12,7 +12,7 @@
     }
   ],
 
-  "permissions": ["storage", "activeTab"],
+  "permissions": ["storage"],
   "options_ui": {
     "page": "options/options.html"
   },
